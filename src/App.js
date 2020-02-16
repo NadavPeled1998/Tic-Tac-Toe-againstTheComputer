@@ -26,7 +26,7 @@ class App extends React.Component {
           let squares = this.state.squares.slice()
           if(this.state.gameLevel === "Noob" || this.gameLevel === "Intermediate"){
               let emptySquares = squares.filter(square => square == null)
-              let random = Math.ceil(Math.random()*emptySquares.length)
+              let random = Math.floor(Math.random()*emptySquares.length)
               if(squares[random] != null){
                 for(let i = random; i<18; i++){
                   if(squares[i] == null){
@@ -79,7 +79,7 @@ class App extends React.Component {
       setTimeout(() => {
         if(this.state.gameLevel === "Noob"){
           let emptySquares = squares.filter(square => square == null)
-          let random = Math.ceil(Math.random()*emptySquares.length)
+          let random = Math.floor(Math.random()*emptySquares.length)
           if(squares[random] != null){
             for(let i = random; i<18; i++){
               if(squares[i] == null){
@@ -96,7 +96,7 @@ class App extends React.Component {
           }
           else{
             let emptySquares = squares.filter(square => square == null)
-            let random = Math.ceil(Math.random()*emptySquares.length)
+            let random = Math.floor(Math.random()*emptySquares.length)
             if(squares[random] != null){
               for(let i = random; i<18; i++){
                 if(squares[i] == null){
@@ -177,7 +177,6 @@ class App extends React.Component {
               squares[emptySquares[random]] = this.state.xIsNext ? 'X' : 'O'
             }
             else if((this.state.xIsNext && squares[7] === 'X'|| !this.state.xIsNext && squares[7] === 'O') && (squares[6] === null || squares[8] === null)){
-              console.log("4")
               let emptySquares = []
               for(let i = 6; i<9; i++){
                 if(i === 6 || i === 8){
@@ -216,7 +215,7 @@ class App extends React.Component {
           }
           else {
             let emptySquares = squares.filter(square => square == null)
-            let random = Math.ceil(Math.random()*emptySquares.length)
+            let random = Math.floor(Math.random()*emptySquares.length)
             if(squares[random] != null){
               for(let i = random; i<18; i++){
                 if(squares[i] == null){
@@ -250,7 +249,6 @@ calculateWinner(squares) {
     for (let i = 0; i < lines.length; i++) {
       const [a, b, c] = lines[i];
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-        console.log(squares[a])
         return squares[a];
       }
     }
@@ -314,8 +312,6 @@ goingToWin(squares) {
     return true
   }
   newGame(Xwins, Owins){
-    console.log(Xwins)
-    console.log(Owins)
     this.setState({
       squares: Array(9).fill(null),
       xIsNext: true,
@@ -329,7 +325,6 @@ goingToWin(squares) {
   render(){
     const squares = this.state.squares
     const winner = this.calculateWinner(squares)
-    console.log(winner)
     const tie = this.gameOver(squares)
     let newGame = false;
     let Xwins = this.state.Xwins;
